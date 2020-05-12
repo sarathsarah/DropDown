@@ -1081,25 +1081,17 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
         cell.isSelected = selectedRowIndices.first{ $0 == (indexPath as NSIndexPath).row } != nil
-        if cell.isSelected {
-//            cell.accessoryType = .checkmark
-        }
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedRowIndex = (indexPath as NSIndexPath).row
-//        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        
-        
         // are we in multi-selection mode?
         if let multiSelectionCallback = multiSelectionAction {
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
             // if already selected then deselect
             if selectedRowIndices.first(where: { $0 == selectedRowIndex}) != nil {
                 deselectRow(at: selectedRowIndex)
-
                 let selectedRowIndicesArray = Array(selectedRowIndices)
                 let selectedRows = selectedRowIndicesArray.map { dataSource[$0] }
                 multiSelectionCallback(selectedRowIndicesArray, selectedRows)

@@ -53,7 +53,9 @@ extension DropDownCell {
 				if selected {
                     self.backgroundColor = selectedBackgroundColor
                     self.optionLabel.textColor = self.highlightTextColor
-                    self.accessoryType = .checkmark
+                    if !(self.isSingleSelection ?? true) {
+                        self.accessoryType = .checkmark
+                    }
                 } else {
                     self.backgroundColor = .clear
                     self.optionLabel.textColor = self.normalTextColor

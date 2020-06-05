@@ -1070,6 +1070,11 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
         cell.selectedBackgroundColor = selectionBackgroundColor
         cell.highlightTextColor = selectedTextColor
         cell.normalTextColor = textColor
+        if let multiSelectionCallback = multiSelectionAction {
+            cell.isSingleSelection = false
+        } else {
+            cell.isSingleSelection = true
+        }
         
         if let cellConfiguration = cellConfiguration {
             cell.optionLabel.text = cellConfiguration(index, dataSource[index])

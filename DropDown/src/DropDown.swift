@@ -1086,7 +1086,12 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.isSelected = selectedRowIndices.first{ $0 == (indexPath as NSIndexPath).row } != nil
+        if selectedRowIndices.first{ $0 == (indexPath as NSIndexPath).row } != nil {
+            cell.isSelected = true
+            cell.accessoryType = .checkmark
+        } else {
+            cell.isSelected = false
+        }        
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

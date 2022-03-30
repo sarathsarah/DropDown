@@ -4,6 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "DropDown",
+    platforms: [.iOS(.v11)],
     products: [
         .library(
             name: "DropDown",
@@ -15,7 +16,12 @@ let package = Package(
         .target(
             name: "DropDown",
             dependencies: [],
-        path: "DropDown/",
-        exclude: ["info.plist"]),
-    ]
+            path: "DropDown",
+            exclude: ["Info.plist", "DropDown.h"],
+            resources: [
+              .process("DropDown/resources")
+            ]
+        )
+    ],
+    swiftLanguageVersions: [.v5]
 )
